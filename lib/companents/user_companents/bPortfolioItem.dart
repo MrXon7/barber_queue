@@ -12,13 +12,14 @@ class BportfolioItem extends StatelessWidget {
     return Builder(
       builder: (BuildContext context) {
         return Container(
-          // width: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width,
           margin: EdgeInsets.symmetric(horizontal: 5.0),
           decoration: BoxDecoration(
-              color: Colors.amber, borderRadius: BorderRadius.circular(20)),
+              // color: Colors.amber, 
+              borderRadius: BorderRadius.circular(20)),
           child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(url, fit: BoxFit.cover)),
+              child: Image.network(url['url'], fit: BoxFit.fill)),
         );
       },
     );

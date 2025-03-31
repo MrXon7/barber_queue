@@ -1,4 +1,4 @@
-import 'package:barber_queue/companents/socialIcon.dart';
+import 'package:barber_queue/companents/user_companents/socialIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -6,13 +6,13 @@ import 'package:url_launcher/url_launcher.dart';
 class SocialIcons extends StatelessWidget {
   final List<String> url;
   const SocialIcons({
-    super.key, required this.url,
+    super.key,
+    required this.url,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SocialIcon(
           icon: Icon(
@@ -20,14 +20,14 @@ class SocialIcons extends StatelessWidget {
             color: Colors.white,
           ),
           color: Colors.green,
-          onPressed: () => launch(url[0]),
+          onPressed: () => launch("tel:${url[0]}"),
         ),
         SocialIcon(
           icon: Icon(
             Icons.telegram,
             color: Colors.blue,
           ),
-          onPressed: () => launch(url[1]),
+          onPressed: () => launch("https://t.me/${url[1]}"),
           color: Colors.white,
         ),
         SocialIcon(
@@ -45,7 +45,7 @@ class SocialIcons extends StatelessWidget {
             begin: Alignment.bottomRight,
             end: Alignment.topLeft,
           ),
-          onPressed: () => launch(url[2]),
+          onPressed: () => launch("https://www.instagram.com/${url[2]}/"),
         ),
       ],
     );

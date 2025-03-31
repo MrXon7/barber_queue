@@ -1,8 +1,9 @@
-import 'package:barber_queue/pages/user_pages/user_queue.dart';
 import 'package:flutter/material.dart';
 
 class MyFloatingActionButton extends StatelessWidget {
-  const MyFloatingActionButton({
+  void Function()? onPressed;
+  MyFloatingActionButton({
+    required this.onPressed,
     super.key,
   });
 
@@ -11,15 +12,7 @@ class MyFloatingActionButton extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: ElevatedButton(
-        onPressed: () {
-          Navigator.pop(context);
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => UserQueue(),
-            ),
-          );
-        },
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.amber,
           shape: RoundedRectangleBorder(

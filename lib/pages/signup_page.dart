@@ -1,18 +1,17 @@
 import 'dart:ui';
 
-import 'package:barber_queue/companents/MyTextFormField.dart';
+import 'package:barber_queue/companents/user_companents/MyTextFormField.dart';
+import 'package:barber_queue/models/barber.dart';
+import 'package:barber_queue/models/user.dart';
+import 'package:barber_queue/pages/barber_pages/barberHomePage.dart';
 import 'package:barber_queue/pages/user_pages/user_home_page.dart';
+import 'package:barber_queue/providers/authProvider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class SingupPage extends StatefulWidget {
-  const SingupPage({super.key});
-
-  @override
-  State<SingupPage> createState() => _SingupPageState();
-}
-
-class _SingupPageState extends State<SingupPage> {
+// ignore: must_be_immutable
+class SingupPage extends StatelessWidget {
+  SingupPage({super.key});
   final _formKey = GlobalKey<FormState>();
   String? _name;
   String? _phoneNumber;
@@ -33,6 +32,69 @@ class _SingupPageState extends State<SingupPage> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+
+    void _registerUser() async {
+      try {
+        final newUser = UserModel(
+            id: authProvider.telegramId!,
+            fullName: _name!,
+            phoneNumber: _phoneNumber!,
+            currentBarber: '',
+            createdAt: DateTime.now());
+
+        final newBarber = BarberModel(
+            id: authProvider.telegramId!,
+            fullName: _name!,
+            phoneNumber: _phoneNumber!,
+            instagram: "alixonov_i",
+            telegram: "maktab58_tadbirlar",
+            isAvailable: false,
+            isChecked: false,
+            services: [
+              // {'sname': "Soch olish", "stime": "20", "sprice": '30000'}
+            ],
+            queue: [
+              // {
+              //   'userId': '1',
+              //   'username': 'ali',
+              //   'status': 'waiting',
+              //   'createdAt': ''
+              // },
+              // {
+              //   'userId': '2',
+              //   'username': 'vali',
+              //   'status': 'waiting',
+              //   'createdAt': ''
+              // },
+              // {
+              //   'userId': '3',
+              //   'username': 'bashr',
+              //   'status': 'waiting',
+              //   'createdAt': ''
+              // },
+            ],
+            location: "Kiritilmagan",
+            rating: 5,
+            createdAt: DateTime.now(),
+            );
+        // foydalanuvchilarni turiga qarab alohida saqlash
+        if (_selectedOption == 'barber') {
+          await authProvider.registerBarber(newBarber, context);
+        } else {
+          await authProvider.registerUser(newUser, context);
+        }
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                _selectedOption == 'barber' ? BarberHome(barberId: authProvider.telegramId!,) : UserHomePage(),
+          ),
+        );
+      } catch (e) {}
+    }
+
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: Stack(
@@ -138,13 +200,13 @@ class _SingupPageState extends State<SingupPage> {
                                     )),
                                 items: [
                                   DropdownMenuItem(
-                                      value: "Mijoz",
+                                      value: "client",
                                       child: Text("Mijoz",
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold))),
                                   DropdownMenuItem(
-                                      value: "Sartarosh",
+                                      value: "barber",
                                       child: Text(
                                         "Sartarosh",
                                         style: TextStyle(
@@ -152,11 +214,7 @@ class _SingupPageState extends State<SingupPage> {
                                             fontWeight: FontWeight.bold),
                                       )),
                                 ],
-                                onChanged: (value) {
-                                  setState(() {
-                                    _selectedOption = value;
-                                  });
-                                }),
+                                onChanged: (value) => _selectedOption = value!),
                             SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height / 40),
@@ -164,24 +222,12 @@ class _SingupPageState extends State<SingupPage> {
                               onTap: () {
                                 if (_formKey.currentState!.validate()) {
                                   _formKey.currentState!.save();
-                                  print('Ism: $_name');
-                                  print('Telefon raqami: $_phoneNumber');
-                                  print('Tanlangan variant: $_selectedOption');
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                           content:
                                               Text('Ma\'lumotlar saqlandi')));
-                                  // Navigator.pushReplacement(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) =>
-                                  //             UserHomePage()));
+                                  _registerUser();
                                 }
-                                // ishga tushirilganda olib tashlanadi
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => UserHomePage()));
                               },
                               child: Container(
                                 padding: EdgeInsets.symmetric(

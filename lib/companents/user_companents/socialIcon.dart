@@ -25,7 +25,7 @@ class SocialIcon extends StatelessWidget {
         ),
         child: icon,
       ),
-      iconSize: 30,
+      iconSize: 24,
       onPressed: onPressed,
     );
   }

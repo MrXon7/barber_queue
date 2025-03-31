@@ -1,17 +1,20 @@
-import 'package:barber_queue/pages/user_pages/user_home_page.dart';
+import 'package:barber_queue/pages/barber_pages/aboutBarber.dart';
+import 'package:barber_queue/pages/barber_pages/addservices.dart';
+import 'package:barber_queue/pages/barber_pages/portfolio.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Bsettings extends StatelessWidget {
   Bsettings({super.key});
+
   List Bdata = [
     [
       "Shaxsiy ma'lumotlar",
       "Shaxsiy ma'lumotlaringizni o'zgartiring",
-      UserHomePage()
+      Aboutbarber()
     ],
-    ["Portfolio", "Ish namunalaringizni qo'shing", UserHomePage()],
-    ["Xizmatlar", "Ko'rsatadigan xizmatlaringizni qo'shing", UserHomePage()],
-    ["Ijtimoiy tarmoqlar", "Ijtimoiy tarmoqlaringizni qo'shing", UserHomePage()]
+    ["Portfolio", "Ish namunalaringizni qo'shing", PortfolioPage()],
+    ["Xizmatlar", "Ko'rsatadigan xizmatlaringizni qo'shing", Barber_Services()],
   ];
 
   @override

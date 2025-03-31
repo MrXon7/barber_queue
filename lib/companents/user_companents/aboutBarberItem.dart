@@ -2,27 +2,24 @@ import 'package:barber_queue/pages/user_pages/barber_foruser_page.dart';
 import 'package:flutter/material.dart';
 
 class BarberItem extends StatelessWidget {
-  const BarberItem({
+  BarberItem({
     super.key,
-    required this.barberList,
-    required this.holatlist,
-    required this.index,
+    required this.barber,
+    required this.barberId,
   });
 
-  final List barberList;
-  final List holatlist;
-  final int index;
+  final String barberId;
+  final Map<String, dynamic> barber;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => BarberForuserPage(
-                      img: barberList[index],
-                      holat: holatlist[index],
+                      barberId: barberId,
                     )));
       },
       child: Container(
@@ -41,20 +38,24 @@ class BarberItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey.shade700),
                   image: DecorationImage(
-                      image: AssetImage(
-                        'assets/images/${barberList[index]}.jpg',
+                      image: NetworkImage(
+                        barber['profileImage'] ?? 'https://ibb.co/DDdnYwbg',
                       ),
-                      fit: BoxFit.cover)),
+                      fit: BoxFit.fill)),
             ),
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "${barberList[index]}".toUpperCase(),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
+                // Sartarosh ismi
+                Expanded(
+                  child: Text(
+                    "${barber['fullName']}".toUpperCase(),
+                      overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
                   ),
                 ),
               ],
@@ -62,6 +63,7 @@ class BarberItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                // Lokatsiya
                 Icon(
                   Icons.location_on,
                   color: Colors.amber,
@@ -69,7 +71,7 @@ class BarberItem extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    'Saroy MFY, Namangan ko\'cha nechinchidir uy',
+                    "Sartarosh Mazili...",
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
                   ),
@@ -92,7 +94,7 @@ class BarberItem extends StatelessWidget {
                       ),
                       SizedBox(width: 2),
                       Text(
-                        "${index + 2.5}",
+                        "${barber['rating']}",
                         style: TextStyle(color: Colors.grey.shade500),
                       )
                     ],
