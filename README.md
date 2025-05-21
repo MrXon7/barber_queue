@@ -10,7 +10,7 @@ Real vaqt rejimida ishlaydigan online sartaroshxona ilovasi. Mijozlar sartaroshl
 
 - **Real vaqtda navbat kuzatish** - mijozlar o'z navbatlarini kuzatib borishlari mumkin
 - **Firebase Firestore backend** - barcha ma'lumotlar Firestoreda saqlanadi
-- **Telegram API integratsiyasi** - mijozlarga navbat haqida bildirishnomalar yuborish
+- **Telegram API integratsiyasi** - mijozlarga navbat haqida bildirishnomalar yuborish, telegram orqali Autentifikatsiya
 - **Provider state management** - ilova holatini boshqarish
 - **Sartarosh paneli** - navbatlarni boshqarish va mijozlarni qo'shish imkoniyati
 
