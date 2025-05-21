@@ -50,7 +50,6 @@ Real vaqt rejimida ishlaydigan online sartaroshxona ilovasi. Mijozlar sartaroshl
    ```
 
 ## Screenshotlar
-![photo_3_2025-05-18_16-00-48](https://github.com/user-attachments/assets/5e18a06f-d583-4f96-aa2b-771ec8184842)
 ![photo_1_2025-05-18_16-00-48](https://github.com/user-attachments/assets/aa845607-de03-42e2-882c-6b9a4c388f40)![photo_3_2025-05-18_16-00-48](https://github.com/user-attachments/assets/148e08ff-591c-4e5c-849b-05ddcb7fd811)![photo_4_2025-05-18_16-00-48](https://github.com/user-attachments/assets/3a995884-35ff-4b10-8b89-d7436bc871fb)
 ![photo_5_2025-05-18_16-00-48](https://github.com/user-attachments/assets/1223c0e6-a980-4fbc-8195-fdfe1f78b872)
 ![photo_6_2025-05-18_16-00-48](https://github.com/user-attachments/assets/c6bb4dae-277f-41a1-9e44-7819a4811150)![photo_7_2025-05-18_16-00-48](https://github.com/user-attachments/assets/b16587a0-b078-4864-b4b6-0157109d3a5c)
